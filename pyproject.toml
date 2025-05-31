@@ -1,0 +1,21 @@
+[project]
+name = "rag"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "dotenv>=0.9.9",
+    "langchain-community>=0.3.24",
+    "langchain-google-genai>=2.1.5",
+    "langchain-huggingface>=0.2.0",
+    "langchain-text-splitters>=0.3.8",
+    "sentence-transformers>=4.1.0",
+    "sqlite-utils>=3.38",
+    "sqlite-vec>=0.1.6",
+]
+
+[dependency-groups]
+dev = [
+    "pylint>=3.3.7",
+]
