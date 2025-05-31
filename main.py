@@ -14,7 +14,7 @@ load_dotenv()
 db = SQLiteVec(
     connection=SQLiteVec.create_connection(db_file="vec.db"),
     embedding=HuggingFaceEmbeddings(model_name="BAAI/bge-small-zh"),
-    table="call_to_arms"
+    table="romance_of_the_three_kingdoms"
 )
 
 def index(file_name: str):
@@ -34,7 +34,7 @@ def chunk(documents) -> list:
 def is_indexed() -> bool:
     """Checks if the given document is indexed."""
     vec_db = Database("vec.db")
-    table = vec_db["call_to_arms"]
+    table = vec_db["romance_of_the_three_kingdoms"]
     return table.count_where() > 0
 
 SYSTEM_PROMPT = {
