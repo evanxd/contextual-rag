@@ -39,7 +39,7 @@ This project demonstrates a simple Retrieval-Augmented Generation (RAG) implemen
 To run the RAG process and get an answer to a predefined question:
 
 ```bash
-python main.py
+uv run main.py
 ```
 
 ## License
