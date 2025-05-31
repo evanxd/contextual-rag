@@ -25,7 +25,7 @@ This project demonstrates a simple Retrieval-Augmented Generation (RAG) implemen
     ```
 
 3.  **Prepare your data**:
-    Place your text document (e.g., `animal-farm.txt`) in the project root directory. The `main.py` script is configured to index `animal-farm.txt` by default.
+    Place your text document (e.g., `romance-of-the-three-kingdoms.txt`) in the project root directory. The `main.py` script is configured to index `romance-of-the-three-kingdoms.txt` by default.
 
 4.  **Set up Google API Key**:
     Create a `.env` file in the project root and add your Google API Key:
