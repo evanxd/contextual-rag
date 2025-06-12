@@ -26,7 +26,7 @@ def index(file_name: str):
 
 def chunk(documents) -> list:
     """Splits documents into smaller chunks."""
-    splitter = CharacterTextSplitter(chunk_size=1024, chunk_overlap=0)
+    splitter = CharacterTextSplitter(chunk_size=256, chunk_overlap=0)
     docs = splitter.split_documents(documents)
     texts = [doc.page_content for doc in docs]
     return texts
@@ -56,26 +56,28 @@ def main():
 
     messages = [SYSTEM_PROMPT]
 
-    question = "孔明最大的貢獻是什麼？"
-    docs = db.similarity_search(question)
-    context = "".join([doc.page_content for doc in docs])
-    messages.append({
-        "role": "user",
-        "content": f"""Question: {question}
-        Context: {context}
-        Answer:"""
-    })
+    while True:
+        print("輸入您的問題")
+        question = input()
+        docs = db.similarity_search(question)
+        context = "".join([doc.page_content for doc in docs])
+        messages.append({
+            "role": "user",
+            "content": f"""Question: {question}
+            Context: {context}
+            Answer:"""
+        })
 
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash-preview-05-20",
-        google_api_key=os.getenv("GOOGLE_API_KEY")
-    )
-    result = llm.invoke(messages)
-    messages.append({
-        "role": "assitant",
-        "content": result.content
-    })
-    print(messages[-1]["content"])
+        llm = ChatGoogleGenerativeAI(
+            model="gemini-2.5-flash-preview-05-20",
+            google_api_key=os.getenv("GOOGLE_API_KEY")
+        )
+        result = llm.invoke(messages)
+        messages.append({
+            "role": "assistant",
+            "content": result.content
+        })
+        print(f"{messages[-1]["content"]}\n")
 
 if __name__ == "__main__":
     main()

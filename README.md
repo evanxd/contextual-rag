@@ -14,7 +14,7 @@ This project demonstrates a simple Retrieval-Augmented Generation (RAG) implemen
 1.  **Clone the repository**:
     ```bash
     git clone <repository_url>
-    cd rag
+    cd contextual-rag
     ```
 
 2.  **Install dependencies**:
