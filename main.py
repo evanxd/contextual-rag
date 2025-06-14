@@ -13,7 +13,7 @@ load_dotenv()
 
 db = SQLiteVec(
     connection=SQLiteVec.create_connection(db_file="vec.db"),
-    embedding=HuggingFaceEmbeddings(model_name="BAAI/bge-small-zh"),
+    embedding=HuggingFaceEmbeddings(model_name="BAAI/bge-m3"),
     table="romance_of_the_three_kingdoms"
 )
 
@@ -39,14 +39,14 @@ def is_indexed() -> bool:
 
 SYSTEM_PROMPT = {
     "role": "system",
-    "content": """你是一個強大的問題回答助理。
-    你會收到下列格式的請求：
+    "content": """You are a powerful question-answering assistant.
+    You will receive requests in the following format:
     Question: (question goes here)
     Context: (context goes here)
     Answer:
-    根據 Context 回答問題，
-    如果你不知道答案，就直接說你不知道。
-    保持答案的簡潔，最多用三句話來回答。"""
+    Answer the question based on the Context.
+    If you do not know the answer, simply state that you do not know.
+    Keep the answer concise, using a maximum of three sentences."""
 }
 
 def main():
@@ -61,7 +61,7 @@ def main():
     messages = [SYSTEM_PROMPT]
 
     while True:
-        print("輸入您的問題")
+        print("Ask me anything.")
         question = input()
         docs = db.similarity_search(question)
         context = "".join([doc.page_content for doc in docs])
